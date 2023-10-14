@@ -40,7 +40,6 @@ export const createArticle = async (
   title: string,
   content: string
 ): Promise<Article> => {
-  console.log(id, title, content);
   const currentDatetime = new Date().toISOString();
 
   const res = await fetch(`http://localhost:3001/posts`, {
