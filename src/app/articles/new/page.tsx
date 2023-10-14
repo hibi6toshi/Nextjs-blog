@@ -9,10 +9,14 @@ const CreateBlogPage = () => {
   const [id, setId] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const hundleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setLoading(true);
     await createArticle(id, title, content);
+    setLoading(false);
     router.push("/");
     router.refresh();
   };
@@ -49,7 +53,15 @@ const CreateBlogPage = () => {
             onChange={(e) => setContent(e.target.value)}
           />
         </div>
-        <button type="submit" className="py-2 px-4 rounded-md bg-orange-300">
+        <button
+          type="submit"
+          className={`py-2 px-4 rounded-md ${
+            loading
+              ? "bg-orange-300 cursor-not-allowed "
+              : "bg-orange-400 hover:bg-orange-500"
+          }`}
+          disabled={loading}
+        >
           投稿
         </button>
       </form>
