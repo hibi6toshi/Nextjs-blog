@@ -2,6 +2,8 @@ import Footer from "./Footer";
 import Header from "./Header";
 import "./globals.css";
 import type { Metadata } from "next";
+import Loading from "./loading";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +19,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className="container mx-auto bg-slate-700 text-slate-50">
         <Header />
-        {children}
+        <Suspense fallback={<Loading />}>{children}</Suspense>
         <Footer />
       </body>
     </html>
